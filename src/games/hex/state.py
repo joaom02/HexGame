@@ -8,12 +8,11 @@ from games.hex.player import HexPlayer
 
 class HexState(State):
     EMPTY_CELL = -1
-    NOTPLAY_CELL = -3
 
-    def __init__(self, tamanho: int = 5):
+    def __init__(self, tamanho: int = 4):
         super().__init__()
 
-        if tamanho < 5:
+        if tamanho < 4:
             raise Exception("the number of rows must be 11 or over")
 
         """
@@ -43,16 +42,61 @@ class HexState(State):
         """
         self.__has_winner = False
 
+    def check_win4(self, player):
+        if player == 0:
+            for col in range(self.__tamanho-1):
+                if (self.__grid[0][col] == 0 or self.__grid[0][col + 1] == 0 or self.__grid[0][col - 1] == 0) and \
+                    (self.__grid[1][col] == 0 or self.__grid[1][col + 1] == 0 or self.__grid[1][col - 1] == 0) and \
+                    (self.__grid[2][col] == 0 or self.__grid[2][col + 1] == 0 or self.__grid[2][col - 1] == 0) and \
+                    (self.__grid[3][col] == 0 or self.__grid[3][col + 1] == 0 or self.__grid[3][col - 1] == 0):
+                    return True
+
+        elif player == 1:
+            for row in range(self.__tamanho-1):
+                if (self.__grid[row][0] == 1 or self.__grid[row + 1][0] == 1 or self.__grid[row - 1][0] == 1) and \
+                    (self.__grid[row][1] == 1 or self.__grid[row + 1][1] == 1 or self.__grid[row - 1][1] == 1) and \
+                    (self.__grid[row][2] == 1 or self.__grid[row + 1][2] == 1 or self.__grid[row - 1][2] == 1) and \
+                    (self.__grid[row][3] == 1 or self.__grid[row + 1][3] == 1 or self.__grid[row - 1][3] == 1):
+                    return True
+
+    def check_win11(self, player):
+        if player == 0:
+            for col in range(self.__tamanho-1):
+                if (self.__grid[0][col] == 0 or self.__grid[0][col + 1] == 0 or self.__grid[0][col - 1] == 0) and \
+                    (self.__grid[1][col] == 0 or self.__grid[1][col + 1] == 0 or self.__grid[1][col - 1] == 0) and \
+                    (self.__grid[2][col] == 0 or self.__grid[2][col + 1] == 0 or self.__grid[2][col - 1] == 0) and \
+                    (self.__grid[3][col] == 0 or self.__grid[3][col + 1] == 0 or self.__grid[3][col - 1] == 0) and \
+                    (self.__grid[4][col] == 0 or self.__grid[4][col + 1] == 0 or self.__grid[4][col - 1] == 0) and \
+                    (self.__grid[5][col] == 0 or self.__grid[5][col + 1] == 0 or self.__grid[5][col - 1] == 0) and \
+                    (self.__grid[6][col] == 0 or self.__grid[6][col + 1] == 0 or self.__grid[6][col - 1] == 0) and \
+                    (self.__grid[7][col] == 0 or self.__grid[7][col + 1] == 0 or self.__grid[7][col - 1] == 0) and \
+                    (self.__grid[8][col] == 0 or self.__grid[8][col + 1] == 0 or self.__grid[8][col - 1] == 0) and \
+                    (self.__grid[9][col] == 0 or self.__grid[9][col + 1] == 0 or self.__grid[9][col - 1] == 0) and \
+                    (self.__grid[10][col] == 0 or self.__grid[10][col + 1] == 0 or self.__grid[10][col - 1] == 0):
+                    return True
+
+        elif player == 1:
+            for row in range(self.__tamanho-1):
+                if (self.__grid[row][0] == 1 or self.__grid[row + 1][0] == 1 or self.__grid[row - 1][0] == 1) and \
+                    (self.__grid[row][1] == 1 or self.__grid[row + 1][1] == 1 or self.__grid[row - 1][1] == 1) and \
+                    (self.__grid[row][2] == 1 or self.__grid[row + 1][2] == 1 or self.__grid[row - 1][2] == 1) and \
+                    (self.__grid[row][3] == 1 or self.__grid[row + 1][3] == 1 or self.__grid[row - 1][3] == 1) and \
+                    (self.__grid[row][4] == 1 or self.__grid[row + 1][4] == 1 or self.__grid[row - 1][4] == 1) and \
+                    (self.__grid[row][5] == 1 or self.__grid[row + 1][5] == 1 or self.__grid[row - 1][5] == 1) and \
+                    (self.__grid[row][6] == 1 or self.__grid[row + 1][6] == 1 or self.__grid[row - 1][6] == 1) and \
+                    (self.__grid[row][7] == 1 or self.__grid[row + 1][7] == 1 or self.__grid[row - 1][7] == 1) and \
+                    (self.__grid[row][8] == 1 or self.__grid[row + 1][8] == 1 or self.__grid[row - 1][8] == 1) and \
+                    (self.__grid[row][9] == 1 or self.__grid[row + 1][9] == 1 or self.__grid[row - 1][9] == 1) and \
+                    (self.__grid[row][10] == 1 or self.__grid[row + 1][10] == 1 or self.__grid[row - 1][10] == 1):
+                    return True
+
     def __check_winner(self, player):
-        print("CW: " + str(player))
-        for col in range(0, self.__num_cols):
-            if self.__grid[self.__num_rows - 1][col] == 0:
-                    return True
-        for row in range(0, self.__num_rows):
-            if self.__grid[row][self.__num_cols - 1] == 1:
-                    return True
-            
-        return False
+        if self.__tamanho == 4:
+            return self.check_win4(player)
+        elif self.__tamanho == 11:
+            return self.check_win4(player)
+        else:
+            return False
 
     def get_grid(self):
         return self.__grid
@@ -63,9 +107,7 @@ class HexState(State):
     def validate_action(self, action: HexAction) -> bool:
         col = action.get_col()
         row = action.get_row()
-        grid = self.__grid
-        player = self.__acting_player
-        count = 0
+        player = self.__acting_player 
         cols = self.__num_cols - 1
         rows = self.__num_rows - 1
         print("Player: " + str(player))
@@ -74,36 +116,11 @@ class HexState(State):
         print(col)
         print(row)
 
-        if row == 0 and player == 0 and col >= 0 and col < cols and self.__grid[row][col] == HexState.EMPTY_CELL:
-            return True
-        
-        if col == 0 and player == 1 and row >= 0 and row < rows and self.__grid[row][col] == HexState.EMPTY_CELL:
-            return True
-
         if col >= 0 and col <= cols and  row >= 0 and row <= rows and self.__grid[row][col] == HexState.EMPTY_CELL:
-            if grid[row- 1][col - 1] == player:
-                count += 1
-            #if grid[row + 1][col + 1] == player:
-            #    count += 1
-            #if grid[row - 1][col + 1] == player:
-            #    count += 1
-            #if grid[row][col + 1] == player:
-            #    count += 1
-            if grid[row][col - 1] == player:
-                count += 1
-            #if grid[row+ 1][col - 1] == player:
-            #    count += 1
-            #if grid[row+ 1][col] == player:
-            #    count += 1
-            if grid[row- 1][col] == player:
-                count += 1
-            if count == 0:
-                return False
             return True
         else:
             return False
-        
-        return True
+
 
     def update(self, action: HexAction):
         col = action.get_col()
@@ -122,9 +139,9 @@ class HexState(State):
 
     def __display_cell(self, row, col):
         print({
-                  0: '0',
-                  1: '1',
-                  HexState.EMPTY_CELL: ' '
+                  0: 'O',
+                  1: 'X',
+                  HexState.EMPTY_CELL: '_'
               }[self.__grid[row][col]], end="")
 
     def __display_numbers(self):
@@ -136,25 +153,21 @@ class HexState(State):
 
     def __display_separator(self):
         for col in range(0, self.__num_cols):
-            print("--", end="")
-        print("-")
+            print("---", end="")
+        print("--")
 
     def display(self):
         self.__display_numbers()
         self.__display_separator()
 
-        for row in range(0, self.__num_rows):
-            print("|", end="")
-            #if row % 2 == 0:
-            #    print(str(row) + " |", end="")
-            #else:
-            #    print(str(row) + "|", end="")
-            for col in range(0, self.__num_cols):
+        for row in range(0, self.__tamanho):
+            print(" " * (row + 1), end="")
+            for col in range(0, self.__tamanho):
                 self.__display_cell(row, col)
-                print('|', end="")
-            print(row)
-            self.__display_separator()
-
+                print(" ", end="")
+            print("|" + str(row))
+        self.__display_separator()
+        print(" " * (self.__tamanho - 1), end="")
         self.__display_numbers()
         print("")
 

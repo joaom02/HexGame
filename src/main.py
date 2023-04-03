@@ -23,7 +23,7 @@ def main():
 
     num_iterations = 1
     
-    run_simulation("Hex Simulator", HexSimulator(RandomHexPlayer("1"), GreedyOHexPlayer("0")), num_iterations)
+    run_simulation("Hex Simulator", HexSimulator(RandomHexPlayer("1"), HumanHexPlayer("0")), num_iterations)
 
 
 if __name__ == "__main__":
