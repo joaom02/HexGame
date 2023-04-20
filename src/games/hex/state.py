@@ -43,13 +43,26 @@ class HexState(State):
         self.__has_winner = False
 
     def check_win4(self, player):
+        row = 0
+        col = 0
         if player == 0:
-            for col in range(self.__tamanho-1):
-                if (self.__grid[0][col] == 0 or self.__grid[0][col + 1] == 0 or self.__grid[0][col - 1] == 0) and \
-                    (self.__grid[1][col] == 0 or self.__grid[1][col + 1] == 0 or self.__grid[1][col - 1] == 0) and \
-                    (self.__grid[2][col] == 0 or self.__grid[2][col + 1] == 0 or self.__grid[2][col - 1] == 0) and \
-                    (self.__grid[3][col] == 0 or self.__grid[3][col + 1] == 0 or self.__grid[3][col - 1] == 0):
+            print("player:" + str(player))
+            while True:
+                print("row: " + str(row)+ "col: " + str(col))
+                if row == 4:
                     return True
+                elif self.__grid[row][col] ==0:
+                    col = col
+                    row = row + 1
+                elif col != 3 and self.__grid[row][col+1] == 0:
+                    col = col +1
+                    row = row + 1
+                elif self.__grid[row][col-1] == 0:
+                    col = col -1
+                    row = row + 1
+                else:
+                    break
+                
 
         elif player == 1:
             for row in range(self.__tamanho-1):

@@ -1,5 +1,4 @@
 from games.hex.players.greedyOffensive import GreedyOHexPlayer
-from games.hex.players.greedyDeffensive import GreedyDHexPlayer
 from games.hex.players.minimaxO import MinimaxOHexPlayer
 from games.hex.players.minimaxD import MinimaxDHexPlayer
 from games.hex.players.random import RandomHexPlayer
@@ -23,7 +22,7 @@ def main():
 
     num_iterations = 1
     
-    run_simulation("Hex Simulator", HexSimulator(RandomHexPlayer("1"), HumanHexPlayer("0")), num_iterations)
+    run_simulation("Hex Simulator", HexSimulator(GreedyOHexPlayer("1"), HumanHexPlayer("0")), num_iterations)
 
 
 if __name__ == "__main__":
