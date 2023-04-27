@@ -17,7 +17,6 @@ class HexSimulator(GameSimulator):
         
         self.__tamanho = tamanho
     def init_game(self):
-        print(self.__tamanho)
         return HexState(self.__tamanho)
 
     def before_end_game(self, state: HexState):
