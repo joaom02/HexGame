@@ -43,34 +43,112 @@ class HexState(State):
         self.__has_winner = False
 
     def check_win4(self, player):
-        row = 0
-        col = 0
         if player == 0:
-            print("player:" + str(player))
-            while True:
-                print("row: " + str(row)+ "col: " + str(col))
-                if row == 4:
-                    return True
-                elif self.__grid[row][col] ==0:
-                    col = col
-                    row = row + 1
-                elif col != 3 and self.__grid[row][col+1] == 0:
-                    col = col +1
-                    row = row + 1
-                elif self.__grid[row][col-1] == 0:
-                    col = col -1
-                    row = row + 1
-                else:
-                    break
-                
+            col = 0  
+            count = 0
+            colunas =[]
+            for row in range(self.__tamanho):
+                for col in range(self.__tamanho):
+                    if self.__grid[row][col] == 0:
+                        colunas.append([row, col])
+
+            for pos in colunas:
+                win = 0
+                if self.__grid[0][pos[1]] == 0:
+                    if self.__grid[1][pos[1]] == 0:
+                        count = 1
+                        win = win + 1
+                    if self.__grid[1][pos[1]+1] == 0 and pos[1]+1 != 3:
+                        count = 2
+                        win = win + 1
+                    if self.__grid[1][pos[1]-1] == 0:
+                        count = 3
+                        win = win + 1
+                    if count == 1:
+                        pos[1] = pos[1]
+                    if count == 2:
+                        pos[1] = pos[1] +1
+                    if count == 3:
+                        pos[1]= pos[1]-1
+                    count = 0                
+                    if self.__grid[2][pos[1]] == 0:
+                        count = 1
+                        win = win + 1
+                    if self.__grid[2][pos[1]+1] == 0 and pos[1]+1 != 3:
+                        count = 2
+                        win = win + 1
+                    if self.__grid[2][pos[1]-1] == 0:
+                        count = 3
+                        win = win + 1
+                    if count == 1:
+                        pos[1] = pos[1]
+                    if count == 2:
+                        pos[1] = pos[1] +1
+                    if count == 3:
+                        pos[1]= pos[1]-1
+                    if self.__grid[3][pos[1]] == 0:
+                        win = win + 1
+                    if self.__grid[3][pos[1]+1] == 0 and pos[1]+1 != 3:
+                        win = win + 1
+                    if self.__grid[3][pos[1]-1] == 0:
+                        win = win + 1
+                    if win == 3:
+                        return True
+
+
 
         elif player == 1:
-            for row in range(self.__tamanho-1):
-                if (self.__grid[row][0] == 1 or self.__grid[row + 1][0] == 1 or self.__grid[row - 1][0] == 1) and \
-                    (self.__grid[row][1] == 1 or self.__grid[row + 1][1] == 1 or self.__grid[row - 1][1] == 1) and \
-                    (self.__grid[row][2] == 1 or self.__grid[row + 1][2] == 1 or self.__grid[row - 1][2] == 1) and \
-                    (self.__grid[row][3] == 1 or self.__grid[row + 1][3] == 1 or self.__grid[row - 1][3] == 1):
-                    return True
+            row = 0  
+            count = 0
+            linhas =[]
+            for col in range(self.__tamanho):
+                for row in range(self.__tamanho):
+                    if self.__grid[row][col] == 0:
+                        linhas.append([row, col])
+
+            for pos in linhas:
+                win = 0
+                if self.__grid[pos[0]][0] == 1:
+                    if self.__grid[pos[0]][1] == 1:
+                        count = 1
+                        win = win + 1
+                    if self.__grid[pos[0]+1][1] == 1 and pos[0]+1 != 3:
+                        count = 2
+                        win = win + 1
+                    if self.__grid[pos[0]-1][1] == 1:
+                        count = 3
+                        win = win + 1
+                    if count == 1:
+                        pos[0] = pos[0]
+                    if count == 2:
+                        pos[0] = pos[0] +1
+                    if count == 3:
+                        pos[0]= pos[0]-1
+                    count = 0                
+                    if self.__grid[pos[0]][2] == 1:
+                        count = 1
+                        win = win + 1
+                    if self.__grid[pos[0]+1][2] == 1 and pos[0]+1 != 3:
+                        count = 2
+                        win = win + 1
+                    if self.__grid[pos[0]-1][2] == 1:
+                        count = 3
+                        win = win + 1
+                    if count == 1:
+                        pos[0] = pos[0]
+                    if count == 2:
+                        pos[0] = pos[0] +1
+                    if count == 3:
+                        pos[0]= pos[0]-1
+                    count = 0 
+                    if self.__grid[pos[0]][3] == 1:
+                        win = win + 1
+                    if self.__grid[pos[0]+1][3] == 1 and pos[0]+1 != 3:
+                        win = win + 1
+                    if self.__grid[pos[0]-1][3] == 1:
+                        win = win + 1
+                    if win == 3:
+                        return True
 
     def check_win11(self, player):
         if player == 0:
@@ -123,11 +201,6 @@ class HexState(State):
         player = self.__acting_player 
         cols = self.__num_cols - 1
         rows = self.__num_rows - 1
-        print("Player: " + str(player))
-        print(self.__num_cols)
-        print(self.__num_rows)
-        print(col)
-        print(row)
 
         if col >= 0 and col <= cols and  row >= 0 and row <= rows and self.__grid[row][col] == HexState.EMPTY_CELL:
             return True
