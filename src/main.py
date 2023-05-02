@@ -60,11 +60,5 @@ def main():
         print("Até a proxima")
         return
     
-<<<<<<< Updated upstream
-    run_simulation("Hex Simulator", HexSimulator(GreedyOHexPlayer("1"), HumanHexPlayer("0")), num_iterations)
-
-=======
->>>>>>> Stashed changes
-
 if __name__ == "__main__":
     main()

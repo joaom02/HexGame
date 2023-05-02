@@ -58,7 +58,7 @@ class HexState(State):
                     if self.__grid[1][pos[1]] == 0:
                         count = 1
                         win = win + 1
-                    if self.__grid[1][pos[1]+1] == 0 and pos[1]+1 != 3:
+                    if self.__grid[1][pos[1]+1] == 0 and pos[1]+1 != 3 and pos[1] != 3:
                         count = 2
                         win = win + 1
                     if self.__grid[1][pos[1]-1] == 0:
@@ -74,7 +74,7 @@ class HexState(State):
                     if self.__grid[2][pos[1]] == 0:
                         count = 1
                         win = win + 1
-                    if self.__grid[2][pos[1]+1] == 0 and pos[1]+1 != 3:
+                    if self.__grid[2][pos[1]+1] == 0 and pos[1]+1 != 3 and pos[1] != 3:
                         count = 2
                         win = win + 1
                     if self.__grid[2][pos[1]-1] == 0:
@@ -88,7 +88,7 @@ class HexState(State):
                         pos[1]= pos[1]-1
                     if self.__grid[3][pos[1]] == 0:
                         win = win + 1
-                    if self.__grid[3][pos[1]+1] == 0 and pos[1]+1 != 3:
+                    if self.__grid[3][pos[1]+1] == 0 and pos[1]+1 != 3 and pos[1] != 3:
                         win = win + 1
                     if self.__grid[3][pos[1]-1] == 0:
                         win = win + 1
@@ -112,7 +112,7 @@ class HexState(State):
                     if self.__grid[pos[0]][1] == 1:
                         count = 1
                         win = win + 1
-                    if self.__grid[pos[0]+1][1] == 1 and pos[0]+1 != 3:
+                    if self.__grid[pos[0]+1][1] == 1 and pos[0]+1 != 3 and pos[0] != 3:
                         count = 2
                         win = win + 1
                     if self.__grid[pos[0]-1][1] == 1:
@@ -128,7 +128,7 @@ class HexState(State):
                     if self.__grid[pos[0]][2] == 1:
                         count = 1
                         win = win + 1
-                    if self.__grid[pos[0]+1][2] == 1 and pos[0]+1 != 3:
+                    if self.__grid[pos[0]+1][2] == 1 and pos[0]+1 != 3 and pos[0] != 3:
                         count = 2
                         win = win + 1
                     if self.__grid[pos[0]-1][2] == 1:
@@ -143,7 +143,7 @@ class HexState(State):
                     count = 0 
                     if self.__grid[pos[0]][3] == 1:
                         win = win + 1
-                    if self.__grid[pos[0]+1][3] == 1 and pos[0]+1 != 3:
+                    if self.__grid[pos[0]+1][3] == 1 and pos[0]+1 != 3 and pos[0] != 3:
                         win = win + 1
                     if self.__grid[pos[0]-1][3] == 1:
                         win = win + 1
