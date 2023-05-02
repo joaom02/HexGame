@@ -198,7 +198,6 @@ class HexState(State):
     def validate_action(self, action: HexAction) -> bool:
         col = action.get_col()
         row = action.get_row()
-        player = self.__acting_player 
         cols = self.__num_cols - 1
         rows = self.__num_rows - 1
 

@@ -29,7 +29,7 @@ def main():
     print("0-Sair do jogo")
     opecion = int(input("Escolha uma opção: "))
     if opecion == 1:
-        run_simulation("Hex Simulator", HexSimulator(HumanHexPlayer("1"),HumanHexPlayer("0")),num_iterations)
+        run_simulation("Hex Simulator", HexSimulator(HumanHexPlayer("1"),HumanHexPlayer("0")),1)
     elif opecion == 2:
         print("Que nivel de dificuldade prentende jogar?")
         print("1-Facil")
@@ -37,16 +37,18 @@ def main():
         print("3-Dificil")
         nivel = int(input("Escolha uma opção: "))
         if nivel == 1:
-            run_simulation("Hex Simulator", HexSimulator(RandomHexPlayer("1"),HumanHexPlayer("0")),num_iterations)
+            run_simulation("Hex Simulator", HexSimulator(RandomHexPlayer("1"),HumanHexPlayer("0")),1)
         elif nivel == 2:
-            run_simulation("Hex Simulator", HexSimulator(GreedyOHexPlayer("1"),HumanHexPlayer("0")),num_iterations)
+            run_simulation("Hex Simulator", HexSimulator(GreedyOHexPlayer("1"),HumanHexPlayer("0")),1)
         elif nivel == 3:
-            run_simulation("Hex Simulator", HexSimulator(MinimaxOHexPlayer("1"),HumanHexPlayer("0")),num_iterations)
+            run_simulation("Hex Simulator", HexSimulator(MinimaxOHexPlayer("1"),HumanHexPlayer("0")),1)
     elif opecion == 3:
         print("1-Facil vs Facil")
         print("2-Facil vs Medio")
         print("3-Facil vs Dificil")
-        print("4-Medio vs Dificil")
+        print("4-Medio vs Medio")
+        print("5-Medio vs Dificil")
+        print("6-Dificil vs Dificil")
         ai = int(input("Escolha uma opção: "))
         if ai == 1:
             run_simulation("Hex Simulator", HexSimulator(RandomHexPlayer("1"),RandomHexPlayer("0")),num_iterations)
@@ -55,7 +57,11 @@ def main():
         elif ai == 3:
             run_simulation("Hex Simulator", HexSimulator(RandomHexPlayer("1"),MinimaxOHexPlayer("0")),num_iterations)
         elif ai == 4:
+            run_simulation("Hex Simulator", HexSimulator(GreedyOHexPlayer("1"),GreedyOHexPlayer("0")),num_iterations)
+        elif ai == 5:
             run_simulation("Hex Simulator", HexSimulator(GreedyOHexPlayer("1"),MinimaxOHexPlayer("0")),num_iterations)
+        elif ai == 6:
+            run_simulation("Hex Simulator", HexSimulator(MinimaxOHexPlayer("1"),MinimaxOHexPlayer("0")),num_iterations)
     elif opecion == 0:
         print("Até a proxima")
         return
