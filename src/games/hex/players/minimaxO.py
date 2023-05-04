@@ -49,13 +49,15 @@ class MinimaxOHexPlayer(HexPlayer):
                 longest = seq
 
         # check each upward diagonal
-        for row in range(2, state.get_num_rows()):
-            for col in range(0, state.get_num_cols() - 2):
+        for row in range(3, state.get_num_rows()):
+            for col in range(0, state.get_num_cols() - 3):
                 seq1 = (1 if grid[row][col] == state.get_acting_player() else 0) + \
-                       (1 if grid[row - 1][col + 1] == state.get_acting_player() else 0)
+                       (1 if grid[row - 1][col + 1] == state.get_acting_player() else 0) + \
+                        (1 if grid[row - 2][col + 2] == state.get_acting_player() else 0)
 
                 seq2 = (1 if grid[row - 1][col + 1] == state.get_acting_player() else 0) + \
-                       (1 if grid[row - 2][col + 2] == state.get_acting_player() else 0)
+                       (1 if grid[row - 2][col + 2] == state.get_acting_player() else 0) + \
+                       (1 if grid[row - 3][col + 3] == state.get_acting_player() else 0)
 
                 if seq1 > longest:
                     longest = seq1
@@ -64,13 +66,49 @@ class MinimaxOHexPlayer(HexPlayer):
                     longest = seq2
 
         # check each downward diagonal
-        for row in range(0, state.get_num_rows() - 2):
-            for col in range(0, state.get_num_cols() - 2):
+        for row in range(0, state.get_num_rows() - 3):
+            for col in range(0, state.get_num_cols() - 3):
                 seq1 = (1 if grid[row][col] == state.get_acting_player() else 0) + \
-                       (1 if grid[row + 1][col + 1] == self.get_current_pos() else 0)
+                       (1 if grid[row + 1][col + 1] == self.get_current_pos() else 0) + \
+                       (1 if grid[row + 2][col + 2] == self.get_current_pos() else 0)
 
                 seq2 = (1 if grid[row + 1][col + 1] == state.get_acting_player() else 0) + \
-                       (1 if grid[row + 2][col + 2] == state.get_acting_player() else 0)
+                       (1 if grid[row + 2][col + 2] == state.get_acting_player() else 0) + \
+                       (1 if grid[row + 3][col + 3] == state.get_acting_player() else 0)
+
+                if seq1 > longest:
+                    longest = seq1
+
+                if seq2 > longest:
+                    longest = seq2
+
+                # ###
+        for row in range(0, state.get_num_rows() - 3):
+            for col in range(3, state.get_num_cols()):
+                seq1 = (1 if grid[row][col] == state.get_acting_player() else 0) + \
+                       (1 if grid[row + 1][col - 1] == state.get_acting_player() else 0) + \
+                        (1 if grid[row + 2][col - 2] == state.get_acting_player() else 0)
+
+                seq2 = (1 if grid[row + 1][col - 1] == state.get_acting_player() else 0) + \
+                       (1 if grid[row + 2][col - 2] == state.get_acting_player() else 0) + \
+                       (1 if grid[row + 3][col - 3] == state.get_acting_player() else 0)
+
+                if seq1 > longest:
+                    longest = seq1
+
+                if seq2 > longest:
+                    longest = seq2
+
+        # ###
+        for row in range(3, state.get_num_rows()):
+            for col in range(3, state.get_num_cols()):
+                seq1 = (1 if grid[row][col] == state.get_acting_player() else 0) + \
+                       (1 if grid[row - 1][col - 1] == self.get_current_pos() else 0) + \
+                       (1 if grid[row - 2][col - 2] == self.get_current_pos() else 0)
+
+                seq2 = (1 if grid[row - 1][col - 1] == state.get_acting_player() else 0) + \
+                       (1 if grid[row - 2][col - 2] == state.get_acting_player() else 0) + \
+                       (1 if grid[row - 3][col - 3] == state.get_acting_player() else 0)
 
                 if seq1 > longest:
                     longest = seq1

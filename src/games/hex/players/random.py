@@ -12,8 +12,6 @@ class RandomHexPlayer(HexPlayer):
         super().__init__(name)
 
     def get_action(self, state: HexState):
-        state.display()
-        print(self.get_name())
         col = randint(0, state.get_num_cols() - 1)
         row = randint(0, state.get_num_cols() - 1)
         return HexAction(col, row)                       

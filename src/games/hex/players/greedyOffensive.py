@@ -19,8 +19,15 @@ class GreedyOHexPlayer(HexPlayer):
                 count = 0
                 if not state.validate_action(HexAction(col, row)):
                     continue
-                if grid[row][col] == self.get_current_pos():
-                    count += row + col
+
+                if row + 1 < 4 and grid[row+1][col] == 0:
+                    count += 1
+                if row >= 0 and grid[row-1][col] == 0: 
+                    count += 1
+                if col+1<4 and grid[row][col+1] == 1:
+                    count += 1
+                if col >= 0 and grid[row][col-1] == 1: 
+                    count += 1
                 if selected_col is None or selected_row is None or count > max_count or (count == max_count and choice([False, True])):
                     selected_col = col
                     selected_row = row
