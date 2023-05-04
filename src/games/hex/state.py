@@ -150,42 +150,9 @@ class HexState(State):
                     if win == 3:
                         return True
 
-    def check_win11(self, player):
-        if player == 0:
-            for col in range(self.__tamanho-1):
-                if (self.__grid[0][col] == 0 or self.__grid[0][col + 1] == 0 or self.__grid[0][col - 1] == 0) and \
-                    (self.__grid[1][col] == 0 or self.__grid[1][col + 1] == 0 or self.__grid[1][col - 1] == 0) and \
-                    (self.__grid[2][col] == 0 or self.__grid[2][col + 1] == 0 or self.__grid[2][col - 1] == 0) and \
-                    (self.__grid[3][col] == 0 or self.__grid[3][col + 1] == 0 or self.__grid[3][col - 1] == 0) and \
-                    (self.__grid[4][col] == 0 or self.__grid[4][col + 1] == 0 or self.__grid[4][col - 1] == 0) and \
-                    (self.__grid[5][col] == 0 or self.__grid[5][col + 1] == 0 or self.__grid[5][col - 1] == 0) and \
-                    (self.__grid[6][col] == 0 or self.__grid[6][col + 1] == 0 or self.__grid[6][col - 1] == 0) and \
-                    (self.__grid[7][col] == 0 or self.__grid[7][col + 1] == 0 or self.__grid[7][col - 1] == 0) and \
-                    (self.__grid[8][col] == 0 or self.__grid[8][col + 1] == 0 or self.__grid[8][col - 1] == 0) and \
-                    (self.__grid[9][col] == 0 or self.__grid[9][col + 1] == 0 or self.__grid[9][col - 1] == 0) and \
-                    (self.__grid[10][col] == 0 or self.__grid[10][col + 1] == 0 or self.__grid[10][col - 1] == 0):
-                    return True
-
-        elif player == 1:
-            for row in range(self.__tamanho-1):
-                if (self.__grid[row][0] == 1 or self.__grid[row + 1][0] == 1 or self.__grid[row - 1][0] == 1) and \
-                    (self.__grid[row][1] == 1 or self.__grid[row + 1][1] == 1 or self.__grid[row - 1][1] == 1) and \
-                    (self.__grid[row][2] == 1 or self.__grid[row + 1][2] == 1 or self.__grid[row - 1][2] == 1) and \
-                    (self.__grid[row][3] == 1 or self.__grid[row + 1][3] == 1 or self.__grid[row - 1][3] == 1) and \
-                    (self.__grid[row][4] == 1 or self.__grid[row + 1][4] == 1 or self.__grid[row - 1][4] == 1) and \
-                    (self.__grid[row][5] == 1 or self.__grid[row + 1][5] == 1 or self.__grid[row - 1][5] == 1) and \
-                    (self.__grid[row][6] == 1 or self.__grid[row + 1][6] == 1 or self.__grid[row - 1][6] == 1) and \
-                    (self.__grid[row][7] == 1 or self.__grid[row + 1][7] == 1 or self.__grid[row - 1][7] == 1) and \
-                    (self.__grid[row][8] == 1 or self.__grid[row + 1][8] == 1 or self.__grid[row - 1][8] == 1) and \
-                    (self.__grid[row][9] == 1 or self.__grid[row + 1][9] == 1 or self.__grid[row - 1][9] == 1) and \
-                    (self.__grid[row][10] == 1 or self.__grid[row + 1][10] == 1 or self.__grid[row - 1][10] == 1):
-                    return True
-
     def __check_winner(self, player):
         if self.__tamanho == 4:
             return self.check_win4(player)
-        elif self.__tamanho == 11:
-            return self.check_win11(player)
         else:
             return False
 
